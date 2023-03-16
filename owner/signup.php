@@ -1,5 +1,3 @@
-<?php require_once("./addons/Session.php"); ?>
-
 <!doctype html>
 <html lang="en">
 
