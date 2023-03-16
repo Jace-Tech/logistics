@@ -123,7 +123,7 @@
               <!-- <li><a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3" href="settings.html" @click="open = false" @focus="open = true" @focusout="open = false">Settings</a></li> -->
               <li>
                 <form action="./handler/auth.handler.php" method="post">
-                  <button class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3">Sign Out</button>
+                  <button name="logout" class="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3">Sign Out</button>
                 </form>
               </li>
             </ul>

@@ -1,3 +1,4 @@
+<?php $LINK = "parcel"; ?>
 <?php require_once("./addons/Session.php"); ?>
 <?php
 $ALL_PARCELS = listAllParcels();
