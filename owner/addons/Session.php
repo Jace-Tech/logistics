@@ -9,7 +9,9 @@ require_once("./store/user.store.php");
 
 if(!isset($_SESSION['ADMIN_SESSION'])) redirect('./');
 
-$adminDetails = json_decode($_SESSION['ADMIN_SESSION'], true);
-$ADMIN_EMAIL = $adminDetails['email'];
-$ADMIN_ID = $adminDetails['id'];
-$ADMIN_USERNAME = $adminDetails['username'];
+if(isset($_SESSION['ADMIN_SESSION'])) {
+  $adminDetails = json_decode($_SESSION['ADMIN_SESSION'], true);
+  $ADMIN_EMAIL = $adminDetails['email'];
+  $ADMIN_ID = $adminDetails['id'];
+  $ADMIN_USERNAME = $adminDetails['username'];
+}
