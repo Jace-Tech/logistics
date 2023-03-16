@@ -1,6 +1,5 @@
-<?php require_once("./addons/Session.php"); ?>
-<?php //session_start(); ?>
-<?php //include_once("./utils/helpers.php"); ?>
+<?php session_start(); ?>
+<?php include_once("./utils/helpers.php"); ?>
 <?php if(isset($_SESSION['ADMIN_SESSION'])) redirect("./dashboard"); ?>
 <!doctype html>
 <html lang="en">
