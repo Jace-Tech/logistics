@@ -1,9 +1,17 @@
 <?php 
 
+// SERVER
 define("HOST", "localhost");
-define("USER", "root");
-define("PASSWORD", "");
-define("DB_NAME", "logistics");
+define("USER", "ocea54990813_root");
+define("PASSWORD", "UdurydE8%");
+define("DB_NAME", "ocea54990813_logistics");
+
+
+// LOCAL 
+// define("HOST", "localhost");
+// define("USER", "root");
+// define("PASSWORD", "");
+// define("DB_NAME", "logistics");
 
 try {
   $dsn = "mysql:host=" . HOST . ";dbname=" . DB_NAME;
