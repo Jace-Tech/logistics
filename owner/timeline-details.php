@@ -1,7 +1,18 @@
 <?php $LINK = "timeline"; ?>
 <?php require_once("./addons/Session.php"); ?>
-<?php if (!isset($_GET['parcel_id']) || !isset($_GET['timeline_id'])) redirect($_SERVER['HTTP_REFERER'] ?? "./view-timeline"); ?>
+<?php if (!isset($_GET['parcel_id'])) redirect($_SERVER['HTTP_REFERER'] ?? "./view-timeline"); ?>
+<?php
+$PARCEL_TIMELINES = listParcelTimelines($_GET['parcel_id']);
 
+$SUMMARY_TIMELINES = array_values(array_filter($PARCEL_TIMELINES, function ($timeline) {
+  return $timeline['is_summary'];
+}));
+
+$DETAILS_TIMELINES = array_values(array_filter($PARCEL_TIMELINES, function ($timeline) {
+  return !$timeline['is_summary'];
+}));
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -33,21 +44,49 @@
         <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
           <div class="sm:flex sm:justify-between sm:items-center mb-8">
             <div class="mb-4 sm:mb-0">
-              <h1 class="text-2xl md:text-3xl font-semibold">Generate Timeline</h1>
+              <h1 class="text-2xl md:text-3xl font-semibold">Timeline Details</h1>
             </div>
           </div>
           <div class="col-span-full bg-white shadow-lg p-6 pb-8 rounded-sm border border-gray-200">
+            <h2 class="text-lg mb-8 font-medium">Summary Timelines</h2>
             <div class="p-5 border-gray-200" style="border-left-width: 1px;">
-              <div class="relative mb-8">
-                <div class="rounded-full flex items-center justify-center bg-gray-200 absolute" style=" width: fit-content; min-width: 28px; min-height: 28px; top: 0; left: -4%;">
+              <?php foreach ($SUMMARY_TIMELINES as $index => $timeline) : ?>
+                <div id="<?= $timeline['id'] ?>" class="relative <?= (count($SUMMARY_TIMELINES) - 1 !== $index) ? "mb-8" : "" ?>">
+                  <div class="rounded-full flex items-center justify-center bg-gray-200 absolute" style=" width: fit-content; min-width: 28px; min-height: 28px; top: 0; left: -4%;">
+                    <?php if($timeline['is_delivered']): ?>
+                      <svg class="fill-current shrink-0" width="11" height="8" viewBox="0 0 11 8">
+                        <path d="m.457 4.516.969-.99 2.516 2.481L9.266.702l.985.99-6.309 6.284z"></path>
+                      </svg>
+                    <?php endif; ?>
+                  </div>
+                  <div class="max-w-sm ml-4 p-4 rounded shadow-md border border-gray-100 flex flex-col">
+                    <p class="text-xs text-gray-500 tracking-widest font-semibold uppercase"><?= $timeline['location'] ?></p>
+                    <h2 class="text-md mt-1 text-indigo-600 font-medium"><?= $timeline['message'] ?></h2>
+                    <p class="text-gray-400 text-xs"><?= date("M jS, Y h:i a", strtotime($timeline['date'])) ?></p>
+                  </div>
                 </div>
-
-                <div class="max-w-sm ml-4 p-4 rounded shadow-md border border-gray-100 flex flex-col">
-                  <p class="text-xs text-gray-500 tracking-widest font-semibold uppercase">London, IN</p>
-                  <h2 class="text-md mt-1 text-indigo-600">This is an message</h2>
-                  <p class="text-gray-400 text-xs italic"><?= date("M jS, Y", strtotime('now')) ?></p>
+              <?php endforeach; ?>
+            </div>
+          </div>
+          <div class="col-span-full bg-white mt-8 shadow-lg p-6 pb-8 rounded-sm border border-gray-200">
+            <h2 class="text-lg mb-8 font-medium">Details Timelines</h2>
+            <div class="p-5 border-gray-200" style="border-left-width: 1px;">
+              <?php foreach ($DETAILS_TIMELINES as $index => $timeline) : ?>
+                <div id="<?= $timeline['id'] ?>" class="relative <?= (count($DETAILS_TIMELINES) - 1 !== $index) ? "mb-8" : ""  ?>">
+                  <div class="rounded-full flex items-center justify-center bg-gray-200 absolute" style=" width: fit-content; min-width: 28px; min-height: 28px; top: 0; left: -4%;">
+                    <?php if($timeline['is_delivered']): ?>
+                      <svg class="fill-current shrink-0" width="11" height="8" viewBox="0 0 11 8">
+                        <path d="m.457 4.516.969-.99 2.516 2.481L9.266.702l.985.99-6.309 6.284z"></path>
+                      </svg>
+                    <?php endif; ?>
+                  </div>
+                  <div class="max-w-sm ml-4 p-4 rounded shadow-md border border-gray-100 flex flex-col">
+                    <p class="text-xs text-gray-500 tracking-widest font-semibold uppercase"><?= $timeline['location'] ?></p>
+                    <h2 class="text-md mt-1 text-indigo-600 font-medium"><?= $timeline['message'] ?></h2>
+                    <p class="text-gray-400 text-xs"><?= date("M jS, Y h:i a", strtotime($timeline['date'])) ?></p>
+                  </div>
                 </div>
-              </div>
+              <?php endforeach; ?>
             </div>
           </div>
         </div>

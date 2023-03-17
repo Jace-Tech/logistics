@@ -44,11 +44,6 @@
   </div>
   <script src="./assets/js/main.75545896273710c7378c.js"></script>
   <script src="./assets/js/functions.js"></script>
-  <script>
-    $('#generator').click(() => {
-      $('#id').val(generateID())
-    })
-  </script>
 </body>
 
 </html>

@@ -19,7 +19,6 @@ else {
   define("DB_NAME", "logistics");
 }
 
-
 try {
   $dsn = "mysql:host=" . HOST . ";dbname=" . DB_NAME;
   $connect = new PDO($dsn, USER, PASSWORD);

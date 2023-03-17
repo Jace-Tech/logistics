@@ -150,7 +150,7 @@ if(isset($_GET['id'])) {
 
                               <td class="p-2">
                                 <div class="items-center gap-4 flex">
-                                  <a href="detail-timeline?timeline_id=<?= $timeline['id'] ?>" class="btn btn-xs text-xs whitespace-nowrap text-white bg-indigo-500 hover:bg-indigo-600">View timeline</a>
+                                  <a href="timeline-details?parcel_id=<?= $timeline['parcel'] ?>#<?= $timeline['id'] ?>" class="btn btn-xs text-xs whitespace-nowrap text-white bg-indigo-500 hover:bg-indigo-600">View timeline</a>
 
                                   <div class="flex gap-2 items-center">
                                     <a href="edit-timeline?timeline_id=<?= $timeline['id'] ?>" class="btn btn-xs text-xs text-white bg-light-blue-500 hover:bg-light-blue-600">Edit</a>
