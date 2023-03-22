@@ -54,6 +54,9 @@ $ALL_PARCELS = listAllParcels();
                           <div class="font-semibold text-left">Title</div>
                         </th>
                         <th class="p-2 whitespace-nowrap">
+                          <div class="font-semibold text-left">Type</div>
+                        </th>
+                        <th class="p-2 whitespace-nowrap">
                           <div class="font-semibold text-left">Weight</div>
                         </th>
                         <th class="p-2 whitespace-nowrap">
@@ -96,6 +99,9 @@ $ALL_PARCELS = listAllParcels();
                             </td>
                             <td class="p-2 whitespace-nowrap">
                               <div class="flex items-center"><?= $parcel['title']; ?></div>
+                            </td>
+                            <td class="p-2 whitespace-nowrap">
+                              <div class="flex items-center"><?= ucwords($parcel['type']); ?></div>
                             </td>
                             <td class="p-2 whitespace-nowrap">
                               <div class="text-center"><?= $parcel['weight'] ?></div>

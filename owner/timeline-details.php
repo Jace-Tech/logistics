@@ -52,7 +52,7 @@ $DETAILS_TIMELINES = array_values(array_filter($PARCEL_TIMELINES, function ($tim
             <div class="p-5 border-gray-200" style="border-left-width: 1px;">
               <?php foreach ($SUMMARY_TIMELINES as $index => $timeline) : ?>
                 <div id="<?= $timeline['id'] ?>" class="relative <?= (count($SUMMARY_TIMELINES) - 1 !== $index) ? "mb-8" : "" ?>">
-                  <div class="rounded-full flex items-center justify-center bg-gray-200 absolute" style=" width: fit-content; min-width: 28px; min-height: 28px; top: 0; left: -4%;">
+                  <div class="rounded-full flex items-center justify-center bg-gray-200 absolute" style=" width: fit-content; min-width: 28px; min-height: 28px; top: 0; left: -34.5px;">
                     <?php if($timeline['is_delivered']): ?>
                       <svg class="fill-current shrink-0" width="11" height="8" viewBox="0 0 11 8">
                         <path d="m.457 4.516.969-.99 2.516 2.481L9.266.702l.985.99-6.309 6.284z"></path>

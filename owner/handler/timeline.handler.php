@@ -8,6 +8,7 @@ if (isset($_POST['add-timeline'])) {
   $parcel = sanitizer($_POST['parcel']);
   $message = sanitizer($_POST['message']);
   $date = sanitizer($_POST['date']);
+  $status = sanitizer($_POST['status']);
   $location = sanitizer($_POST['location']);
 
   $summary = $_POST['summary'];
@@ -30,7 +31,7 @@ if (isset($_POST['add-timeline'])) {
     }
 
     // ADD TIMELINE
-    $result = $connect->prepare("INSERT INTO timeline(id, parcel, message, location, date, is_summary, is_delivered) VALUES (:id, :parcel, :message, :location, :date, :isSummary, :isFinal)");
+    $result = $connect->prepare("INSERT INTO timeline(id, parcel, message, location, date, is_summary, status, is_delivered) VALUES (:id, :parcel, :message, :location, :date, :isSummary, :status, :isFinal)");
     $result->execute([
       "id" => uniqid("TML_"),
       "parcel" => $parcel,
@@ -38,6 +39,7 @@ if (isset($_POST['add-timeline'])) {
       "location" => $location,
       "date" => $date,
       "isSummary" => $summary,
+      "status" => $status,
       "isFinal" => 0
     ]);
 
@@ -60,7 +62,7 @@ elseif(isset($_POST['edit-timeline'])){
   $parcelID = $_POST['parcel_id'];
 
   try {
-    $query = "UPDATE timeline SET message = :message, location = :location, date = :date, is_delivered = :final, is_summary = :summary WHERE id = :id";
+    $query = "UPDATE timeline SET message = :message, location = :location, date = :date, is_delivered = :final, is_summary = :summary, status = :status WHERE id = :id";
     $result = $connect->prepare($query);
     $result->execute([
       "message" => $message,
@@ -68,6 +70,7 @@ elseif(isset($_POST['edit-timeline'])){
       "date" => $date,
       "final" => $final,
       "summary" => $summary,
+      "status" => $status,
       "id" => $id
     ]);
 

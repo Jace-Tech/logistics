@@ -5,6 +5,8 @@
 if (!isset($_GET['parcel_id'])) redirect($_SERVER['HTTP_REFERER']);
 $PARCEL_ID = $_GET['parcel_id'];
 $PARCEL_DETAILS = getParcel($PARCEL_ID);
+
+print_r($PARCEL_DETAILS);
 ?>
 <!doctype html>
 <html lang="en">
@@ -164,6 +166,16 @@ $PARCEL_DETAILS = getParcel($PARCEL_ID);
               </div>
 
               <div class="grid grid-cols-12 w-full gap-4">
+                <div class="col-span-full">
+                  <label for="service" class="mb-1 font-bold flex text-xs text-gray-500">Type *</label>
+                  <select class="form-input w-full text-gray-500" name="type" id="">
+                    <option value="">Choose shipment type</option>
+
+                    <option value="air freight" <?= $PARCEL_DETAILS['type'] == "air freight" ? "selected" : "" ?>>Air freight</option>
+                    <option value="sea shipment" <?= $PARCEL_DETAILS['type'] == "sea shipment" ? "selected" : "" ?>>Sea Shipment</option>
+                  </select>
+                </div>
+
                 <div class="col-span-full sm:col-span-6">
                   <label for="service" class="mb-1 font-bold flex text-xs text-gray-500">Service *</label>
                   <input type="text" name="service" id="service" value="<?= $PARCEL_DETAILS['service']; ?>" placeholder="eg: FedEx Standard Overnight" required class="form-input w-full">

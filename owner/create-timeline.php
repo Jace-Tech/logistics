@@ -76,6 +76,16 @@ $ALL_PARCELS = listAllParcels();
                   </div>
 
                   <div class="col-span-full sm:col-span-6">
+                    <label for="date" class="mb-1 font-bold flex text-xs text-gray-500">Status *</label>
+                    <select name="status" class="form-input w-full text-gray-500" id="">
+                      <option value="" selected disabled>Choose timeline status</option>
+                      <option value="delivered">Delivered</option>
+                      <option value="in transit"> In Transit</option>
+                      <option value="not delivered">Not Delivered</option>
+                    </select>
+                  </div>
+
+                  <div class="col-span-full sm:col-span-6">
                     <label for="date" class="mb-1 font-bold flex text-xs text-gray-500">Options * </label>
                     <div class="flex gap-6 items-center py-4">
                       <!-- FINAL SWITCH -->

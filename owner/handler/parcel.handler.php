@@ -8,6 +8,7 @@ if(isset($_POST['add-parcel'])) {
   $id = sanitizer($_POST['id']);
   $title = sanitizer($_POST['title']);
   $weight = sanitizer($_POST['weight']);
+  $type = sanitizer($_POST['type']);
   $totalPieces = sanitizer($_POST['totalPieces']);
   $dimensions = sanitizer($_POST['dimensions']);
   $packaging = sanitizer($_POST['packaging']) ?? NULL;
@@ -37,7 +38,7 @@ if(isset($_POST['add-parcel'])) {
     if(!$result->rowCount()) throw new Exception("Error adding parcel");
 
     // Add the service
-    $query = "INSERT INTO parcel_shipment_details(id, parcel, service, terms, estimated_date, special_handling_section) VALUES (:serviceId, :parcelId, :service, :terms, :estimatedDate, :handling)";
+    $query = "INSERT INTO parcel_shipment_details(id, parcel, service, terms, estimated_date, special_handling_section, type) VALUES (:serviceId, :parcelId, :service, :terms, :estimatedDate, :handling, :type)";
     $result = $connect->prepare($query);
     $result->execute([
       "serviceId" => uniqid("PSRV_"),
@@ -45,7 +46,8 @@ if(isset($_POST['add-parcel'])) {
       "service" => $service,
       "terms" => $terms,
       "estimatedDate" => $estimatedDate,
-      "handling" => $specialHandlingSection
+      "handling" => $specialHandlingSection,
+      "type" => $type
     ]);
 
     if(!$result->rowCount()) throw new Exception("Error adding parcel");
@@ -64,6 +66,7 @@ elseif(isset($_POST['edit-parcel'])) {
   $id = sanitizer($_POST['id']);
   $title = sanitizer($_POST['title']);
   $weight = sanitizer($_POST['weight']);
+  $type = sanitizer($_POST['type']);
   $totalPieces = sanitizer($_POST['totalPieces']);
   $dimensions = sanitizer($_POST['dimensions']);
   $packaging = sanitizer($_POST['packaging']) ?? NULL;
@@ -77,7 +80,7 @@ elseif(isset($_POST['edit-parcel'])) {
   $editId = $_POST['edit-parcel'];
 
   try {
-    $query = "UPDATE parcel SET id = :parcelId, title = :title, weight = :weight, total_pieces = :totalPieces, dimensions = :dimensions, user = :user, packaging = :packaging, date = :date WHERE id = :editId";
+    $query = "UPDATE parcel SET id = :parcelId, title = :title, weight = :weight, total_pieces = :totalPieces, dimensions = :dimensions, packaging = :packaging, date = :date WHERE id = :editId";
     $result = $connect->prepare($query);
     $result->execute([
       "parcelId" => $id,
@@ -85,7 +88,6 @@ elseif(isset($_POST['edit-parcel'])) {
       "weight" => $weight,
       "totalPieces" => $totalPieces,
       "dimensions" => $dimensions,
-      "user" => $user,
       "packaging" => $packaging,
       "date" => $date,
       "editId" => $editId,
@@ -94,7 +96,7 @@ elseif(isset($_POST['edit-parcel'])) {
     if(!$result->rowCount()) throw new Exception("Failed to edit parcel");
   
     // Update the Service
-    $query = "UPDATE parcel_shipment_details SET parcel = :parcelId, service = :service, terms = :terms, estimated_date = :estimatedDate,special_handling_section = :handlerSection WHERE parcel = :editId";
+    $query = "UPDATE parcel_shipment_details SET parcel = :parcelId, service = :service, terms = :terms, estimated_date = :estimatedDate,special_handling_section = :handlerSection, `type` = :type WHERE parcel = :editId";
     $result = $connect->prepare($query);
     $result->execute([
       "parcelId" => $id,
@@ -102,6 +104,7 @@ elseif(isset($_POST['edit-parcel'])) {
       "terms" => $terms,
       "estimatedDate" => $estimatedDate,
       "handlerSection" => $specialHandlingSection,
+      "type" => $type,
       "editId" => $editId,
     ]);
   

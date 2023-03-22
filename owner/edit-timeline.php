@@ -100,6 +100,16 @@ print_r($TIMELINE_DETAILS);
                   </div>
 
                   <div class="col-span-full sm:col-span-6">
+                    <label for="date" class="mb-1 font-bold flex text-xs text-gray-500">Status *</label>
+                    <select name="status" value="<?= $TIMELINE_DETAILS['status']; ?>" class="form-input w-full text-gray-500" id="">
+                      <option value="" selected disabled>Choose timeline status</option>
+                      <option value="delivered" <?= $TIMELINE_DETAILS['status'] == "delivered" ? "selected" : "" ?>>Delivered</option>
+                      <option value="in transit" <?= $TIMELINE_DETAILS['status'] == "in transit" ? "selected" : "" ?>> In Transit</option>
+                      <option value="not delivered" <?= $TIMELINE_DETAILS['status'] == "not delivered" ? "selected" : "" ?>>Not Delivered</option>
+                    </select>
+                  </div>
+
+                  <div class="col-span-full sm:col-span-6">
                     <label for="date" class="mb-1 font-bold flex text-xs text-gray-500">Options * </label>
                     <div class="flex gap-6 items-center py-4">
                       <!-- FINAL SWITCH -->

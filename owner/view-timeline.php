@@ -137,11 +137,7 @@ if(isset($_GET['id'])) {
                               </td>
 
                               <td class="p-2 whitespace-nowrap">
-                                <?php if ($timeline['is_delivered'] == 1) : ?>
-                                  <div class="text-left font-medium text-green-500"><?= "Delivered" ?></div>
-                                <?php else : ?>
-                                  <div class="text-left font-medium text-red-500"><?= "Not Delivered" ?></div>
-                                <?php endif; ?>
+                                <div class="text-left font-medium text-gray-600"><?=  $timeline['status'] ?></div>
                               </td>
 
                               <td class="p-2 whitespace-nowrap">

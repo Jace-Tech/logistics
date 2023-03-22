@@ -173,6 +173,11 @@ $inActiveClass = "text-gray-500";
                         </div>
 
                         <div class="col-span-full sm:col-span-6 xl:col-span-4 bg-white">
+                          <h2 class="text-sm text-blue-600 font-semibold capitalize">Shipment type</h2>
+                          <p class="text-sm font-light mt-2 text-gray-500"><?= ucwords($PARCEL_DETAILS['type']) ?></p>
+                        </div>
+
+                        <div class="col-span-full sm:col-span-6 xl:col-span-4 bg-white">
                           <h2 class="text-sm text-blue-600 font-semibold capitalize">Parcel service</h2>
                           <p class="text-sm font-light mt-2 text-gray-500"><?= $PARCEL_DETAILS['service'] ?></p>
                         </div>

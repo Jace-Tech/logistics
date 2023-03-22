@@ -1,7 +1,7 @@
 <?php 
 
-// $MODE = "DEV";
-$MODE = "PROD";
+$MODE = "DEV";
+// $MODE = "PROD";
 
 // SERVER
 

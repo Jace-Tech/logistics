@@ -120,6 +120,15 @@
               </div>
 
               <div class="grid grid-cols-12 w-full gap-4">
+                <div class="col-span-full">
+                  <label for="service" class="mb-1 font-bold flex text-xs text-gray-500">Type *</label>
+                  <select class="form-input w-full text-gray-500" name="type" id="">
+                    <option value="" selected disabled>Choose shipment type</option>
+                    <option value="air freight">Air freight</option>
+                    <option value="sea shipment">Sea Shipment</option>
+                  </select>
+                </div>
+
                 <div class="col-span-full sm:col-span-6">
                   <label for="service" class="mb-1 font-bold flex text-xs text-gray-500">Service *</label>
                   <input type="text" name="service" id="service" placeholder="eg: FedEx Standard Overnight" required class="form-input w-full">
